@@ -1,0 +1,3 @@
+*.docx
+!assets/resume.docx
+.static-server.pid
