@@ -154,6 +154,9 @@ section {
 
 .hero {
   display: grid;
+  grid-template-areas:
+    "copy portrait"
+    "stats portrait";
   grid-template-columns: minmax(0, 1.2fr) 360px;
   gap: 72px;
   align-items: center;
@@ -162,6 +165,7 @@ section {
 }
 
 .hero-copy {
+  grid-area: copy;
   max-width: 680px;
 }
 
@@ -255,9 +259,11 @@ h1 {
 
 .hero-stats {
   display: grid;
+  grid-area: stats;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin: 42px 0 0;
+  max-width: 680px;
 }
 
 .hero-stats div {
@@ -282,6 +288,7 @@ h1 {
 
 .portrait-panel {
   position: relative;
+  grid-area: portrait;
   padding: 18px;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(220, 232, 228, 0.9);
@@ -335,6 +342,7 @@ h1 {
 .contact-card a {
   color: var(--accent-dark);
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 .section-heading {
@@ -737,6 +745,10 @@ h1 {
 
   .hero {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "copy"
+      "portrait"
+      "stats";
     gap: 34px;
     padding-top: 44px;
   }
@@ -768,32 +780,43 @@ h1 {
   }
 
   .brand {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
+    justify-content: flex-start;
   }
 
   .nav-links {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 2px;
     padding: 4px;
+    overflow: visible;
   }
 
   .nav-links a {
-    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 40px;
     padding: 7px 10px;
     font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .hero {
     min-height: auto;
     padding: 38px 0 54px;
+    gap: 20px;
   }
 
   h1 {
-    font-size: clamp(48px, 18vw, 72px);
+    font-size: clamp(44px, 17vw, 64px);
   }
 
   .hero-summary {
     font-size: 16px;
+    margin-bottom: 22px;
   }
 
   .hero-actions,
@@ -813,6 +836,41 @@ h1 {
   .education-layout,
   .contact-section {
     grid-template-columns: 1fr;
+  }
+
+  .hero-stats {
+    grid-column: auto;
+    gap: 10px;
+    margin-top: 8px;
+    max-width: none;
+  }
+
+  .hero-stats div {
+    padding: 16px 18px;
+  }
+
+  .portrait-panel {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+  }
+
+  .portrait-frame {
+    width: 104px;
+    min-height: 138px;
+  }
+
+  .contact-card {
+    margin-top: 0;
+    padding: 12px;
+  }
+
+  .contact-card p {
+    font-size: 12px;
   }
 
   .profile-section,
@@ -870,5 +928,29 @@ h1 {
   .contact-section {
     margin-bottom: 42px;
     padding: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero-lead {
+    font-size: 13px;
+  }
+
+  .portrait-panel {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .portrait-frame {
+    width: 92px;
+    min-height: 122px;
+  }
+
+  .contact-card {
+    padding: 10px;
   }
 }
